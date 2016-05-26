@@ -1,0 +1,48 @@
+import java.util.*;
+public class PivotRotated 
+{
+	public static void main(String[]s)
+	{
+		int x,k,pivot;
+		 int a[];
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Size of array:");
+		x= scanner.nextInt();
+		a= new int [x];
+		System.out.println("Please enter "+ x +" element in array:");
+		for(int i=0;i<x;i++)
+		{
+			a[i]= scanner.nextInt(); 
+		}
+		pivot=findPivot(a);
+		System.out.println("Pivot element index is "+ pivot  +" and pivot element is "+a[pivot]);
+    }
+	
+	public static int findPivot(int a[])
+     {
+		int start,end,mid,pivot;
+		start =0;
+		end = a.length-1;
+		pivot=0;
+			if (a[start] < a[end] )
+				return -1;
+		while (true)
+		{
+			mid = (start + end)/2 ;
+			
+			if (a[mid] > a[mid+1])
+			{   pivot = mid+1;
+				break;
+			} 
+			else if (a[start] <= a[mid] )
+			{
+				start = mid+1; 
+			}
+			else 
+			{
+				end = mid-1; 
+			}
+		}
+		return pivot ;
+     }
+}	
