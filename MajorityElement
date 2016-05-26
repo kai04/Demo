@@ -1,0 +1,54 @@
+import java.util.*;
+public class Majority {
+	public static void main(String[]s){
+		int x,major;
+		 int a[];
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Size of array:");
+		x= scanner.nextInt();
+		a= new int [x];
+		System.out.println("Please enter "+ x +" element in array:");
+		for(int i=0;i<x;i++){
+			a[i]= scanner.nextInt(); 
+		}
+		major= majorElement(a);
+		System.out.println("Majority element in array is :" + major);
+		
+		} //  end main
+	
+	
+	//Majority Element method 
+		public static int majorElement(int a[])
+		{
+		int p[] = new int[2]; 	
+		int size,count;
+		size = a.length;
+		p[0]=a[0];
+		p[1]=1;
+		for (int i = 1;i<size;i++)
+		 {
+		  if (p[1]>=0)
+		    {
+			  if (a[i-1]== a[i])
+				p[1]++	;
+		      else 
+				p[1]--	;
+			 }	
+		  else 
+		  {
+			p[0]= a[i];
+			p[1]=1;
+		  }//loop ends
+		 }
+		//Verifying p[0] is majority
+		 count =0;
+		 for (int j = 0;j<size;j++)
+		 {
+		   if (a[j]==p[0]){count++;}
+		 }
+		 if (count > (size/2))
+		   {return p[0];}
+		 else 
+		   {return 0;}  
+		}//end majority method
+}//end class
