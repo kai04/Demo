@@ -1,0 +1,59 @@
+import java.util.*;
+public class MinSubArraySum {
+	public static void main(String[]s){
+		int x,k;
+		 int a[];
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Size of array:");
+		x= scanner.nextInt();
+		a= new int [x];
+		System.out.println("Please enter "+ x +" element in array:");
+		for(int i=0;i<x;i++){
+			a[i]= scanner.nextInt(); 
+		}
+		System.out.println("Desired sum of subarray:");
+		k= scanner.nextInt();
+		minSubArray(a,k);
+		} //  end main
+	
+	//method to find minSubArray of sum k  
+			public static void minSubArray(int a[],int k)
+			{
+				int countsum,minlen,subarrlen;
+				int end=-1;
+				int start=-1;
+				minlen= a.length;
+				countsum = 0;
+				for(int i = 0; i<a.length;i++)
+				{
+					countsum =0;
+					for (int j=i;j<a.length;j++)
+					{
+						countsum +=a[j];
+						subarrlen= j-i+1;
+						if(countsum == k && subarrlen < minlen  )
+						{
+							minlen = subarrlen;
+							start = i;
+							end = j;
+						}
+						
+					}
+				}	
+				
+				// Print Sub array of sum k
+				if ( start == -1 && end == -1)
+				{
+					System.out.println("Subarray with sum " +k+" not found ");	
+					return ;
+				}
+				else
+				{
+				    System.out.println("Subarray with sum " +k+" are as follows:");
+					for(int p = start; p<= end ;p++)
+					{	
+					System.out.print(a[p] + " ");
+			        }
+				}			
+			}//end method
+}//end class
