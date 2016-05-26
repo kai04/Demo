@@ -1,0 +1,60 @@
+import java.util.*;
+public class Subsequence {
+	
+	public static void main(String[]s){
+	String x,y,result;
+	Scanner scanner = new Scanner(System.in);	
+	System.out.println("Enter First String:\n");	
+	x = scanner.next();
+	System.out.print("\n");
+	System.out.println("Enter Second String:\n");	
+	y = scanner.next();
+	System.out.print("\n");
+	int a[][] = new int[x.length()+1][y.length()+1];
+	result=Updatesequence(a,x,y);
+	Display(a,x,y); 
+	System.out.println("Longest common subsequence and its length is "+ result +" , " + result.length() );
+	}//end main
+	
+	//Display method 
+	public static void Display(int a[][],String p,String q) {
+		for (int i=0 ;i<=p.length();i++)
+	       {
+	    	   for (int j=0 ;j<=q.length();j++)
+		       {	
+			    System.out.print(" " +a[i][j]);	
+			   }
+	    	   System.out.print("\n");
+		   }
+	}
+	
+	//Update sequence matrix method 
+		public static String Updatesequence (int a[][],String x,String y) {
+			String res = null;
+			for (int i=1 ;i<=x.length();i++)
+		    {
+		 	   for (int j=1 ;j<=y.length();j++)
+			       {
+		 		     if(x.charAt(i-1) == y.charAt(j-1))
+				      {
+		 			   a[i][j] = 1+a[i-1][j-1];	
+		 			   res = res + x.charAt(i-1);
+				      }
+		 		     else
+		 		      {
+		 			    if (a[i-1][j]>a[i][j-1] )
+		 			    {
+		 			    	a[i][j] = a[i-1][j];
+		 			    }
+		 			    else
+					    {
+					    	a[i][j] = a[i][j-1];
+					    }
+		 		      }
+				   }
+		 	   
+			   }
+			return res;
+	
+		}
+}//end subsequence class
